@@ -16,3 +16,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: digicel/transactions
+      context: transactions
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
