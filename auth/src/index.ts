@@ -16,9 +16,15 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: true
+    secure: true,
+    name: 'session'
   })
 );
+// app.use((req, res, next) => {
+//   console.log("333333333")
+//   console.log(req.session);
+//   console.log("333333333")
+// })
 
 app.use(currentUserRouter);
 app.use(signinRouter);
