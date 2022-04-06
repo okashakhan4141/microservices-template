@@ -1,4 +1,3 @@
-# microservices-template
 
 # Winston
 To test winston hit @ https://digicel.dev/api/users/signout with request type -> POST and check console
