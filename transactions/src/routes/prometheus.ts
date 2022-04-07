@@ -36,7 +36,7 @@ router.use(
   })
 );
 
-router.get("/api/users/metrics", async (req, res) => {
+router.get("/api/transactions/metrics", async (req: Request, res: Response) => {
   res.set("Content-Type", client.register.contentType);
   res.send(await client.register.metrics());
 });
