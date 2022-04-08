@@ -11,7 +11,17 @@ import { signupRouter } from "./routes/signup";
 import { prometheusRouter } from "./routes/prometheus";
 import { errorHandler, NotFoundError } from "@dstransaction/common";
 
+const i18n = require("i18n");
+
 const app = express();
+
+i18n.configure({
+  // locales: ["en", "fr"],
+  defaultLocale: "en",
+  // header: "accept-language",
+  autoReload: true,
+  directory: __dirname + "/locales",
+});
 
 app.set("trust proxy", true);
 app.use(json());
@@ -22,6 +32,13 @@ app.use(
     name: "session",
   })
 );
+
+// app.use(i18n.init);
+
+app.use((req, res, next) => {
+  i18n.setLocale(req.headers["accept-language"]);
+  next();
+});
 
 app.use(prometheusRouter);
 

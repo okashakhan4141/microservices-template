@@ -2,6 +2,7 @@ import express from "express";
 import logger from "../logger/logger";
 
 const router = express.Router();
+const i18n = require("i18n");
 
 router.post("/api/users/signout", (req, res) => {
   req.session = null;
@@ -9,7 +10,13 @@ router.post("/api/users/signout", (req, res) => {
   logger.info("User Signout!");
   logger.error("Testing!");
 
-  res.send({});
+  // console.log(req.headers["accept-language"]);
+  // console.log(i18n.setLocale(req.headers["accept-language"]));
+
+  // i18n.setLocale(req.headers["accept-language"]);
+
+  res.send(i18n.__("user_signout_success"));
+  // res.send({});
 });
 
 export { router as signoutRouter };
