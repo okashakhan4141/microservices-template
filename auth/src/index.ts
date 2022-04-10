@@ -18,7 +18,6 @@ const app = express();
 i18n.configure({
   // locales: ["en", "fr"],
   defaultLocale: "en",
-  // header: "accept-language",
   autoReload: true,
   directory: __dirname + "/locales",
 });
@@ -33,14 +32,17 @@ app.use(
   })
 );
 
-// app.use(i18n.init);
+// Prom-Client middleware should be at top to detect routes
+// All other routes/middlewares will go after this
+app.use(prometheusRouter);
 
+// app.use(i18n.init); // => this is not working
+
+// own middleware setup
 app.use((req, res, next) => {
   i18n.setLocale(req.headers["accept-language"]);
   next();
 });
-
-app.use(prometheusRouter);
 
 // app.use((req, res, next) => {
 //   console.log("333333333")

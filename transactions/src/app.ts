@@ -14,7 +14,17 @@ import { updateTransactionRouter } from "./routes/update";
 
 import { prometheusRouter } from "./routes/prometheus";
 
+// const i18n = require("i18n");
+
 const app = express();
+
+// i18n.configure({
+//   // locales: ["en", "fr"],
+//   defaultLocale: "en",
+//   autoReload: true,
+//   directory: __dirname + "/locales",
+// });
+
 app.set("trust proxy", true);
 app.use(json());
 app.use(
@@ -24,7 +34,16 @@ app.use(
     name: "session",
   })
 );
+
+// Prom-Client middleware should be at top to detect routes
+// All other routes/middlewares will go after this
 app.use(prometheusRouter);
+
+// middleware for localization
+// app.use((req, res, next) => {
+//   i18n.setLocale(req.headers["accept-language"]);
+//   next();
+// });
 
 app.use(currentUser);
 

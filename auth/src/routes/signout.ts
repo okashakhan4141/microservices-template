@@ -10,11 +10,6 @@ router.post("/api/users/signout", (req, res) => {
   logger.info("User Signout!");
   logger.error("Testing!");
 
-  // console.log(req.headers["accept-language"]);
-  // console.log(i18n.setLocale(req.headers["accept-language"]));
-
-  // i18n.setLocale(req.headers["accept-language"]);
-
   res.send(i18n.__("user_signout_success"));
   // res.send({});
 });
