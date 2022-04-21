@@ -32,3 +32,19 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: digicel/payments
+      context: payments
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: digicel/rewards
+      context: rewards
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

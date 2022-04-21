@@ -11,3 +11,9 @@ common/package-lock.json
 
 sms/node_modules
 sms/package-lock.json
+
+payments/node_modules
+payments/package-lock.json
+
+rewards/node_modules
+rewards/package-lock.json

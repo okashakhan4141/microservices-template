@@ -31,4 +31,17 @@ spec:
                 name: sms-srv
                 port:
                   number: 3000
-          
+          - path: /api/bill/payments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payments-srv
+                port:
+                  number: 3000
+          - path: /api/rewards/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: rewards-srv
+                port:
+                  number: 3000
