@@ -1,8 +1,8 @@
-import { createLogger, format, transports } from "winston";
-import stringify from "fast-safe-stringify";
+import { createLogger, format, transports } from 'winston';
+import stringify from 'fast-safe-stringify';
 const { combine, timestamp, label, printf, colorize } = format;
 
-const customFormat = printf((info) => {
+const customFormat = printf(info => {
   return `[${info.level}] ${info.timestamp} ${stringify(info.message)}`;
 });
 
@@ -10,13 +10,13 @@ const logger = createLogger({
   // level: 'info', // by default is info
   format: combine(
     colorize(),
-    label({ label: "AccountManagement_MS" }),
-    timestamp({ format: "DD-MMM-YYYY HH:mm:ss" }),
+    label({ label: 'AccountManagement_MS' }),
+    timestamp({ format: 'DD-MMM-YYYY HH:mm:ss' }),
     customFormat
   ),
   transports: [
     new transports.Console({
-      level: "debug",
+      level: 'debug',
       handleExceptions: true,
     }),
   ],

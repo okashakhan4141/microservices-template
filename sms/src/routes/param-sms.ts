@@ -1,17 +1,16 @@
-import express from "express";
+import express from 'express';
 const request = require('request');
 
 const router = express.Router();
 
-router.post("/api/sms/params", async (req, res) => {
-
+router.post('/api/sms/params', async (req, res) => {
   const options = {
     url: 'https://stagingsms.useboom.net/api/v1/message/send/params',
     json: true,
     headers: {
-        'authorization': `${req.headers['authorization']}`
+      authorization: `${req.headers['authorization']}`,
     },
-    body: req.body
+    body: req.body,
   };
 
   request.post(options, (err, response, body) => {

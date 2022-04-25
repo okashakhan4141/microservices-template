@@ -1,9 +1,8 @@
-import express from "express";
+import express from 'express';
 
 const router = express.Router();
 
-router.get("/api/rewards", async (req, res) => {
-
+router.get('/api/rewards', async (req, res) => {
   res.send({});
 });
 

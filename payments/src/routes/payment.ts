@@ -1,13 +1,12 @@
-import express from "express";
+import express from 'express';
 
 const router = express.Router();
 
-router.post("/api/bill/payments/pay", async (req, res) => {
-
+router.post('/api/bill/payments/pay', async (req, res) => {
   console.log(req.body);
 
   res.status(200).send({
-      message: 'SUCCESS'
+    message: 'SUCCESS',
   });
 });
 
