@@ -3,8 +3,6 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/api/bill/payments/existing', async (req, res) => {
-  console.log(req.query.uid);
-
   let existing = [
     {
       type: 'electricity',
@@ -19,6 +17,13 @@ router.get('/api/bill/payments/existing', async (req, res) => {
       due: '2022-04-30',
     },
   ];
+
+  /*
+   will check existing payments
+   and before returning check if there is new bill for that referance no?
+   if yes, will return new details with due date etc
+   else, will return with status -> "PAID"
+  */
 
   res.status(200).send(existing);
 });

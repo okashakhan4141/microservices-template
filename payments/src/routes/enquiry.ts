@@ -2,9 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
-router.post('/api/bill/payments/enquire', async (req, res) => {
-  console.log(req.body);
-
+router.get('/api/bill/payments/enquire', async (req, res) => {
   res.status(200).send({
     message: 'SUCCESS',
     billDetails: {

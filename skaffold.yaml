@@ -8,30 +8,30 @@ build:
   local:
     push: false
   artifacts:
-    # - image: digicel/auth
-    #   context: auth
-    #   docker:
-    #     dockerfile: DockerFile
-    #   sync:
-    #     manual:
-    #       - src: 'src/**/*.ts'
-    #         dest: .
-    # - image: digicel/transactions
-    #   context: transactions
-    #   docker:
-    #     dockerfile: DockerFile
-    #   sync:
-    #     manual:
-    #       - src: 'src/**/*.ts'
-    #         dest: .
-    # - image: digicel/sms
-    #   context: sms
-    #   docker:
-    #     dockerfile: DockerFile
-    #   sync:
-    #     manual:
-    #       - src: 'src/**/*.ts'
-    #         dest: .
+    - image: digicel/auth
+      context: auth
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: digicel/transactions
+      context: transactions
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: digicel/sms
+      context: sms
+      docker:
+        dockerfile: DockerFile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: digicel/payments
       context: payments
       docker:
@@ -40,11 +40,3 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    # - image: digicel/rewards
-    #   context: rewards
-    #   docker:
-    #     dockerfile: DockerFile
-    #   sync:
-    #     manual:
-    #       - src: 'src/**/*.ts'
-    #         dest: .

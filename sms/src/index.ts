@@ -34,7 +34,7 @@ app.use(errorHandler);
 
 const start = async () => {
   try {
-    await mongoose.connect('mongodb://sms-mongo-srv:27017/sms');
+    await mongoose.connect('mongodb://host.docker.internal:27017/sms');
     console.log('SMS - Connected to MongoDb');
   } catch (err) {
     console.error(err);
