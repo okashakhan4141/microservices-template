@@ -17,6 +17,7 @@ router.get('/api/bill/payments/billers', async (req, res) => {
     creditCard: [],
   };
 
+  res['body'] = 'hi';
   res.status(200).send(billers[billerType]);
 });
 

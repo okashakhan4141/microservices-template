@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const paymentMetricsSchema = new Schema({
+const metricsSchema = new Schema({
   date: {
     type: Date,
     required: true,
@@ -12,6 +12,6 @@ const paymentMetricsSchema = new Schema({
   },
 });
 
-const PaymentMetrics = mongoose.model('PaymentMetrics', paymentMetricsSchema);
+const Metrics = mongoose.model('Metrics', metricsSchema);
 
-export { PaymentMetrics };
+export { Metrics };

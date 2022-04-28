@@ -3,14 +3,14 @@ const client = require('prom-client');
 const responseTime = require('response-time');
 import { Request, Response } from 'express';
 
-import { PaymentMetrics } from '../models/paymentMetrics';
+import { Metrics } from '../models/metrics';
 
 const router = express.Router();
 
 const restResponseTimeHistogram = new client.Histogram({
   name: 'rest_response_time_duration_seconds',
   help: 'REST API response time in seconds',
-  labelNames: ['method', 'route', 'status_code'],
+  labelNames: ['method', 'route', 'status_code', 'response'],
 });
 
 const databaseResponseTimeHistogram = new client.Histogram({
@@ -25,12 +25,14 @@ collectDefaultMetrics();
 router.use(
   responseTime((req: Request, res: Response, time: number) => {
     if (req?.route?.path) {
-      console.log(req.method, req.route.path, res.statusCode);
+      console.log('Prom');
+      console.log(req.method, req.route.path, res['body']);
       restResponseTimeHistogram.observe(
         {
           method: req.method,
           route: req.route.path,
           status_code: res.statusCode,
+          response: [],
         },
         time * 1000
       );
@@ -40,10 +42,11 @@ router.use(
 
 router.get('/api/bill/payments/metrics', async (req, res) => {
   // console.log(client.collectDefaultMetrics.metricsList);
+  console.log('prom-get');
 
   const ret = await client.register.metrics();
 
-  const metric = new PaymentMetrics({
+  const metric = new Metrics({
     date: new Date(),
     metrics: ret,
   });
