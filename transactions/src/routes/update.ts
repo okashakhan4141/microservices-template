@@ -5,8 +5,11 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError,
 } from '@dstransaction/common';
 import { Transaction } from '../models/transaction';
+import { TransactionUpdatedPublisher } from '../events/publishers/transaction-updated-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -27,6 +30,10 @@ router.put(
       throw new NotFoundError();
     }
 
+    if (transaction.accountId) {
+      throw new BadRequestError('Cannot edit a reserved transaction');
+    }
+
     if (transaction.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
     }
@@ -36,6 +43,14 @@ router.put(
       price: req.body.price,
     });
     await transaction.save();
+
+    new TransactionUpdatedPublisher(natsWrapper.client).publish({
+      id: transaction.id,
+      title: transaction.title,
+      price: transaction.price,
+      userId: transaction.userId,
+      version: transaction.version,
+    })
 
     res.send(transaction);
   }

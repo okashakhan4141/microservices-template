@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface TransactionAttrs {
   title: string;
@@ -10,6 +11,8 @@ interface TransactionDoc extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
+  version: number;
+  accountId?: string;
 }
 
 interface TransactionModel extends mongoose.Model<TransactionDoc> {
@@ -26,9 +29,17 @@ const transactionSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    // status: {
+    //   type: String,
+    //   required: true
+    // }, 
     userId: {
       type: String,
       required: true,
+    },
+    accountId: {
+      type: String,
+      required: false,
     },
   },
   {
@@ -40,6 +51,9 @@ const transactionSchema = new mongoose.Schema(
     },
   }
 );
+
+transactionSchema.set('versionKey', 'version');
+transactionSchema.plugin(updateIfCurrentPlugin);
 
 transactionSchema.statics.build = (attrs: TransactionAttrs) => {
   return new Transaction(attrs);
