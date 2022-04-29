@@ -26,3 +26,9 @@ notifications/package-lock.json
 
 cash/node_modules
 cash/package-lock.json
+
+sms/node_modules
+sms/package-lock.json
+
+payments/node_modules
+payments/package-lock.json
