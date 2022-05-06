@@ -17,6 +17,9 @@
     "express-async-errors": "^3.1.1",
     "mongoose": "^5.12.11",
     "prom-client": "^14.0.1",
+    "i18n": "^0.14.2",
+    "fast-safe-stringify": "^2.1.1",
+    "winston": "^3.6.0",
     "response-time": "^2.3.2",
     "ts-node-dev": "^1.1.6"
   }

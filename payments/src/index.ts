@@ -15,7 +15,16 @@ import { MultipleBillsRouter } from './routes/multiple';
 
 import { prometheusRouter } from './routes/prometheus';
 
+const i18n = require('i18n');
+
 const app = express();
+
+i18n.configure({
+  // locales: ["en", "fr"],
+  defaultLocale: 'en',
+  autoReload: true,
+  directory: __dirname + '/locales',
+});
 
 app.set('trust proxy', true);
 app.use(json());
@@ -30,6 +39,12 @@ app.use(
 // Prom-Client middleware should be at top to detect routes
 // All other routes/middlewares will go after this
 app.use(prometheusRouter);
+
+// own middleware setup
+app.use((req: Request, res: Response, next: any) => {
+  i18n.setLocale(req.headers['accept-language']);
+  next();
+});
 
 // Other routes
 app.use(EnquiryRouter);

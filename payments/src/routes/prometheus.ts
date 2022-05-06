@@ -25,8 +25,7 @@ collectDefaultMetrics();
 router.use(
   responseTime((req: Request, res: Response, time: number) => {
     if (req?.route?.path) {
-      console.log('Prom');
-      console.log(req.method, req.route.path);
+
       restResponseTimeHistogram.observe(
         {
           method: req.method,
@@ -43,8 +42,6 @@ router.use(
 router.get(
   '/api/bill/payments/metrics',
   async (req: Request, res: Response) => {
-    // console.log(client.collectDefaultMetrics.metricsList);
-    console.log('prom-get');
 
     const ret = await client.register.metrics();
 

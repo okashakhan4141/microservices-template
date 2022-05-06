@@ -1,5 +1,5 @@
 import express from 'express';
-
+import logger from '../logger/logger';
 import { Request, Response } from 'express';
 
 const router = express.Router();
@@ -21,8 +21,11 @@ router.get(
       creditCard: [],
     };
 
-    // res['body'] = 'hi';
+    logger.info('Billers endpoint');
+    logger.error('Testing!');
+
     res.status(200).send(billers[billerType]);
+
   }
 );
 
