@@ -61,7 +61,7 @@ router.get(
 
     const metric = new Metrics({
       date: new Date(),
-      service: 'Bill Payments',
+      service: 'SMS',
       metrics: ret,
     });
 

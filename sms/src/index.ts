@@ -10,7 +10,7 @@ import { sendSmsRouter } from './routes/sms';
 import { sendSmsParamsRouter } from './routes/param-sms';
 import { sendOTPRouter } from './routes/otp';
 
-import { prometheusRouter } from './routes/prometheus';
+import { prometheusRouter } from './middlewares/prometheus';
 
 const app = express();
 

@@ -2,7 +2,7 @@ import express from 'express';
 import { Payment } from '../models/payments';
 import { Request, Response } from 'express';
 
-import { dbMetrics } from './prometheus';
+import { dbMetrics } from '../middlewares/prometheus';
 
 const router = express.Router();
 
