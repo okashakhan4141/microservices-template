@@ -42,7 +42,11 @@ app.use(prometheusRouter);
 
 // own middleware setup
 app.use((req: Request, res: Response, next: any) => {
-  i18n.setLocale(req.headers['accept-language']);
+  if (req.headers['accept-language']) {
+    i18n.setLocale(req.headers['accept-language']);
+  } else {
+    i18n.setLocale('en');
+  }
   next();
 });
 
@@ -61,7 +65,7 @@ app.use(errorHandler);
 
 const start = async () => {
   try {
-    await mongoose.connect('mongodb://host.docker.internal:27017/billPayment');
+    await mongoose.connect('mongodb://host.docker.internal:27017/digicel');
     console.log('Bill Payment - Connected to MongoDb');
   } catch (err) {
     console.error(err);

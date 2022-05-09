@@ -17,6 +17,8 @@
     "express-async-errors": "^3.1.1",
     "mongoose": "^5.12.11",
     "node-nats-streaming": "^0.3.2",
+    "prom-client": "^14.0.1",
+    "response-time": "^2.3.2",
     "request": "^2.88.2",
     "ts-node-dev": "^1.1.6"
   }

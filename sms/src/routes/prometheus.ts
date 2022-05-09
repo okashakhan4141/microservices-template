@@ -54,7 +54,7 @@ router.use(
 );
 
 router.get(
-  '/api/bill/payments/metrics',
+  '/api/sms/metrics',
   async (req: Request, res: Response) => {
 
     const ret = await client.register.metrics();

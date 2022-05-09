@@ -10,6 +10,8 @@ import { sendSmsRouter } from './routes/sms';
 import { sendSmsParamsRouter } from './routes/param-sms';
 import { sendOTPRouter } from './routes/otp';
 
+import { prometheusRouter } from './routes/prometheus';
+
 const app = express();
 
 app.set('trust proxy', true);
@@ -21,6 +23,10 @@ app.use(
     name: 'session',
   })
 );
+
+// Prom-Client middleware should be at top to detect routes
+// All other routes/middlewares will go after this
+app.use(prometheusRouter);
 
 app.use(sendSmsRouter);
 app.use(sendSmsParamsRouter);
@@ -34,7 +40,7 @@ app.use(errorHandler);
 
 const start = async () => {
   try {
-    await mongoose.connect('mongodb://host.docker.internal:27017/sms');
+    await mongoose.connect('mongodb://host.docker.internal:27017/digicel');
     console.log('SMS - Connected to MongoDb');
   } catch (err) {
     console.error(err);

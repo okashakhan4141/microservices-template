@@ -24,7 +24,12 @@ router.get(
     logger.info('Billers endpoint');
     logger.error('Testing!');
 
-    res.status(200).send(billers[billerType]);
+    res.status(200).send({
+      results: {
+        message: `SUCCESS`,
+        dataItems: billers[billerType]
+      },
+    });
 
   }
 );

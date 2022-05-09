@@ -27,7 +27,12 @@ router.get(
    else, will return with status -> "PAID"
   */
 
-    res.status(200).send(existing);
+    res.status(200).send({
+      results: {
+        message: `SUCCESS`,
+        dataItems: existing
+      },
+    });
   }
 );
 
